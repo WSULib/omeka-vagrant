@@ -16,14 +16,30 @@ sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again p
 sudo apt-get -y install lamp-server^
 sudo apt-get -y install libapache2-mod-wsgi libapache2-mod-jk
 
-# 1) Download and install Omeka 2.0 (be in the home directory)
+# 1) Download and install Omeka 2.5.1 (be in the home directory)
 cd ~
-wget http://omeka.org/files/omeka-2.4.zip
-unzip omeka-2.4.zip
+wget http://omeka.org/files/omeka-2.5.1.zip
+unzip omeka-2.5.1.zip
 
 # 2) Move the Omeka files to your web directory
-sudo mv omeka-2.4/* /var/www/html/
-sudo mv omeka-2.4/.htaccess /var/www/html/
+sudo mv omeka-2.5.1/* /var/www/html/
+sudo mv omeka-2.5.1/.htaccess /var/www/html/
+
+# 2.5) Download and install any desired plugins
+
+cd /var/www/html/plugins/
+
+wget http://github.com/omeka/plugin-CSSEditor/releases/download/v1.0.1/CSSEditor-1.0.1.zip
+unzip CSSEditor-1.0.1.zip
+rm CSSEditor-1.0.1.zip
+
+wget http://github.com/omeka/plugin-CsvImport/releases/download/v2.0.4/CsvImport-2.0.4.zip
+unzip CsvImport-2.0.4.zip
+rm CsvImport-2.0.4.zip
+
+wget http://github.com/omeka/plugin-Geolocation/releases/download/v2.2.6/Geolocation-2.2.6.zip
+unzip Geolocation-2.2.6.zip
+rm Geolocation-2.2.6.zip
 
 # 3) Delete the old index.html file in www
 sudo rm /var/www/html/index.html
